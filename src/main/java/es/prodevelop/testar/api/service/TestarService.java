@@ -45,8 +45,8 @@ public class TestarService implements ITestarService {
 		
 		commands.add("testar.bat");
 		
-		if (StringUtils.isNotEmpty(params.getSee())) {
-			commands.add("see="+params.getSee());
+		if (StringUtils.isNotEmpty(params.getSse())) {
+			commands.add("sse="+params.getSse());
 		}
 		
 		if (StringUtils.isNotEmpty(params.getMode())) {
