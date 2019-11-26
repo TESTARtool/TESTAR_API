@@ -19,11 +19,11 @@ public class Params   {
 	@JsonProperty("mode")
 	private String mode = null;
 
-	@JsonProperty("SUTConnector")
-	private String SUTConnector = null;
+	@JsonProperty("sutConnector")
+	private String sutConnector = null;
 
-	@JsonProperty("SUTConnectorValue")
-	private String SUTConnectorValue = null;
+	@JsonProperty("sutConnectorValue")
+	private String sutConnectorValue = null;
 
 	@JsonProperty("sequences")
 	private Integer sequences = null;
@@ -37,20 +37,17 @@ public class Params   {
 	@JsonProperty("clickFilter")
 	private String clickFilter = null;
 
-	@JsonProperty("showVisualSettingsDialogOnStartup")
-	private String showVisualSettingsDialogOnStartup = null;
-
 	@JsonProperty("sequenceFileName")
 	private String sequenceFileName = null;
 
-	@JsonProperty("testCaseName")
-	private String testCaseName = null;
+	/*@JsonProperty("testCaseName")
+	private String testCaseName = null;*/
 
 	/**
 	 * Indicates to TESTAR the protocol to be executed
 	 * @return sse
 	 **/
-	@ApiModelProperty(example = "web_generic", required = true, value = "Indicates to TESTAR the protocol to be executed")
+	@ApiModelProperty(example = "desktop_generic", required = true, value = "Indicates to TESTAR the protocol to be executed")
 	@NotNull
 
 	public String getSse() {
@@ -70,7 +67,7 @@ public class Params   {
 	 * Execution mode in TESTAR (Spy, Generate, GenerateManual, Replay)
 	 * @return mode
 	 **/
-	@ApiModelProperty(example = "Replay", required = true, value = "Execution mode in TESTAR (Spy, Generate, GenerateManual, Replay)")
+	@ApiModelProperty(example = "Generate", required = true, value = "Execution mode in TESTAR (Spy, Generate, GenerateManual, Replay)")
 	@NotNull
 
 	public String getMode() {
@@ -88,41 +85,41 @@ public class Params   {
 
 	/**
 	 * How you want to connect to the SUT (COMMAND_LINE, SUT_WINDOW_TITLE, SUT_PROCESS_NAME, WEB_DRIVER)
-	 * @return SUTConnector
+	 * @return sutConnector
 	 */
 	@ApiModelProperty(example = "COMMAND_LINE", required = true, value = "How you want to connect to the SUT (COMMAND_LINE, SUT_WINDOW_TITLE, SUT_PROCESS_NAME, WEB_DRIVER)")
 	@NotNull
 
-	public String getSUTConnector() {
-		return SUTConnector;
+	public String getSutConnector() {
+		return sutConnector;
 	}
 
-	public void setSUTConnector(String SUTConnector) {
-		this.SUTConnector = SUTConnector;
+	public void setSutConnector(String sutConnector) {
+		this.sutConnector = sutConnector;
 	}
 
-	public Params SUTConnector(String SUTConnector) {
-		this.SUTConnector = SUTConnector;
+	public Params sutConnector(String sutConnector) {
+		this.sutConnector = sutConnector;
 		return this;
 	}
 	
 	/**
 	 * Indicate the location of the SUT
-	 * @return SUTConnectorValue
+	 * @return sutConnectorValue
 	 */
 	@ApiModelProperty(example = "c:\\windows\\system32\\notepad.exe", required = true, value = "How you want to connect to the SUT (COMMAND_LINE, SUT_WINDOW_TITLE, SUT_PROCESS_NAME, WEB_DRIVER)")
 	@NotNull
 
-	public String getSUTConnectorValue() {
-		return SUTConnectorValue;
+	public String getSutConnectorValue() {
+		return sutConnectorValue;
 	}
 
-	public void setSUTConnectorValue(String SUTConnectorValue) {
-		this.SUTConnectorValue = SUTConnectorValue;
+	public void setSutConnectorValue(String sutConnectorValue) {
+		this.sutConnectorValue = sutConnectorValue;
 	}
 	
-	public Params SUTConnectorValue(String SUTConnectorValue) {
-		this.SUTConnectorValue = SUTConnectorValue;
+	public Params sutConnectorValue(String sutConnectorValue) {
+		this.sutConnectorValue = sutConnectorValue;
 		return this;
 	}
 	
@@ -201,32 +198,12 @@ public class Params   {
 		this.clickFilter = clickFilter;
 		return this;
 	}
-	
-	/**
-	 * Enable or Disable TESTAR GUI
-	 * @return ShowVisualSettingsDialogOnStartup
-	 */
-	@ApiModelProperty(example = "false", required = true, value = "Enable or Disable TESTAR GUI")
-	@NotNull
-	
-	public String getShowVisualSettingsDialogOnStartup() {
-		return showVisualSettingsDialogOnStartup;
-	}
-
-	public void setShowVisualSettingsDialogOnStartup(String showVisualSettingsDialogOnStartup) {
-		this.showVisualSettingsDialogOnStartup = showVisualSettingsDialogOnStartup;
-	}
-	
-	public Params showVisualSettingsDialogOnStartup(String showVisualSettingsDialogOnStartup) {
-		this.showVisualSettingsDialogOnStartup = showVisualSettingsDialogOnStartup;
-		return this;
-	}
 
 	/**
 	 * In case of using REPLAY mode filename of the sequence
 	 * @return sequenceFileName
 	 **/
-	@ApiModelProperty(example = "sequence-testapp", value = "In case of using REPLAY mode filename of the sequence")
+	@ApiModelProperty(example = "sequence-number", value = "In case of using REPLAY mode filename of the sequence")
 
 	public String getSequenceFileName() {
 		return sequenceFileName;
@@ -245,7 +222,7 @@ public class Params   {
 	 * Name of the testcase to be inserted in internal TESTAR logs for further analysis
 	 * @return testCaseName
 	 **/
-	@ApiModelProperty(example = "Anp-publicDomain", required = true, value = "Name of the testcase to be inserted in internal TESTAR logs for further analysis")
+	/*@ApiModelProperty(example = "test-case-name", required = true, value = "Name of the testcase to be inserted in internal TESTAR logs for further analysis")
 	@NotNull
 
 	public String getTestCaseName() {
@@ -259,7 +236,7 @@ public class Params   {
 	public Params testCaseName(String testCaseName) {
 		this.testCaseName = testCaseName;
 		return this;
-	}
+	}*/
 
 	@Override
 	public boolean equals(java.lang.Object o) {
@@ -272,20 +249,19 @@ public class Params   {
 		Params params = (Params) o;
 		return Objects.equals(this.sse, params.sse) &&
 				Objects.equals(this.mode, params.mode) &&
-				Objects.equals(this.SUTConnector, params.SUTConnector) &&
-				Objects.equals(this.SUTConnectorValue, params.SUTConnectorValue) &&
+				Objects.equals(this.sutConnector, params.sutConnector) &&
+				Objects.equals(this.sutConnectorValue, params.sutConnectorValue) &&
 				Objects.equals(this.sequences, params.sequences) &&
 				Objects.equals(this.sequenceLength, params.sequenceLength) &&
 				Objects.equals(this.suspiciousTitles, params.suspiciousTitles) &&
 				Objects.equals(this.clickFilter, params.clickFilter) &&
-				Objects.equals(this.showVisualSettingsDialogOnStartup, params.showVisualSettingsDialogOnStartup) &&
-				Objects.equals(this.sequenceFileName, params.sequenceFileName) &&
-				Objects.equals(this.testCaseName, params.testCaseName);
+				Objects.equals(this.sequenceFileName, params.sequenceFileName);
+				//Objects.equals(this.testCaseName, params.testCaseName);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(sse, mode, SUTConnector, SUTConnectorValue, sequences, sequenceLength, suspiciousTitles, clickFilter, showVisualSettingsDialogOnStartup, sequenceFileName, testCaseName);
+		return Objects.hash(sse, mode, sutConnector, sutConnectorValue, sequences, sequenceLength, suspiciousTitles, clickFilter, sequenceFileName);
 	}
 
 	@Override
@@ -295,15 +271,14 @@ public class Params   {
 
 		sb.append("    sse: ").append(toIndentedString(sse)).append("\n");
 		sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-		sb.append("    SUTConnector: ").append(toIndentedString(SUTConnector)).append("\n");
-		sb.append("    SUTConnectorValue: ").append(toIndentedString(SUTConnectorValue)).append("\n");
+		sb.append("    sutConnector: ").append(toIndentedString(sutConnector)).append("\n");
+		sb.append("    sutConnectorValue: ").append(toIndentedString(sutConnectorValue)).append("\n");
 		sb.append("    sequences: ").append(toIndentedString(sequences)).append("\n");
 		sb.append("    sequenceLength: ").append(toIndentedString(sequenceLength)).append("\n");
 		sb.append("    suspiciousTitles: ").append(toIndentedString(suspiciousTitles)).append("\n");
 		sb.append("    clickFilter: ").append(toIndentedString(clickFilter)).append("\n");
-		sb.append("    showVisualSettingsDialogOnStartup: ").append(toIndentedString(showVisualSettingsDialogOnStartup)).append("\n");
 		sb.append("    sequenceFileName: ").append(toIndentedString(sequenceFileName)).append("\n");
-		sb.append("    testCaseName: ").append(toIndentedString(testCaseName)).append("\n");
+		//sb.append("    testCaseName: ").append(toIndentedString(testCaseName)).append("\n");
 		
 		sb.append("}");
 		return sb.toString();

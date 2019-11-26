@@ -2,6 +2,7 @@ package es.prodevelop.testar.api.service;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -28,14 +29,14 @@ public class TestarService implements ITestarService {
 		/*
 		 * testar sse=web_generic Mode=Generate Sequences=5 SequenceLength=50 
 		 * 		ShowVisualSettingsDialogOnStartup=false 
-		 * 		SuspiciousTitles=".*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*|.*[bB]ortali.*" 
+		 * 		SuspiciousTitles=".*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*" 
 		 */
 		ReturnExecution returnExecution = new ReturnExecution();
 		returnExecution.setStartDate(OffsetDateTime.now());
 		
 		log.info("params[{}]", params);
 		
-		List<String> commands = new ArrayList<String>();
+		List<String> commands = new ArrayList<>();
 		
 		/*commands.add("cmd");
 		commands.add("/K");
@@ -53,6 +54,16 @@ public class TestarService implements ITestarService {
 			commands.add("Mode="+params.getMode());
 		}
 		
+		if (StringUtils.isNotEmpty(params.getSutConnector())) {
+			commands.add("SUTConnector="+params.getSutConnector());
+		}
+		
+		if (StringUtils.isNotEmpty(params.getSutConnectorValue())) {
+			String path = params.getSutConnectorValue();
+			path = path.replace(File.separator, File.separator+File.separator);
+			commands.add("SUTConnectorValue=\""+path+"\"");
+		}
+		
 		if (params.getSequences() != null) {
 			commands.add("Sequences="+params.getSequences());
 		}
@@ -61,18 +72,22 @@ public class TestarService implements ITestarService {
 			commands.add("SequenceLength="+params.getSequenceLength());
 		}
 		
-		if (params.getSuspiciousTitles() != null) {
-			commands.add("SuspiciousTitles="+params.getSuspiciousTitles());
+		if (StringUtils.isNotEmpty(params.getSuspiciousTitles())) {
+			commands.add("SuspiciousTitles=\""+params.getSuspiciousTitles()+"\"");
 		}
 		
-		if (params.getTestCaseName() != null) {
-			commands.add("TestCaseName="+params.getTestCaseName());
+		if (StringUtils.isNotEmpty(params.getClickFilter())) {
+			commands.add("ClickFilter=\""+params.getClickFilter()+"\"");
 		}
-			
-		//TODO: sequenceFileName		
+		
 		commands.add("ShowVisualSettingsDialogOnStartup=false");
 		
-		//String command = "cmd /c date";
+		/*if (params.getTestCaseName() != null) {
+			commands.add("TestCaseName="+params.getTestCaseName());
+		}*/
+
+		//TODO: sequenceFileName
+		
 		String[] commadsArray = commands.toArray(new String[0]);
 		
 		for (String string : commadsArray) {
