@@ -21,7 +21,7 @@ public class SequenceService implements ISequenceService {
 	
 	@Override
 	public List<TestarFile> getFiles(String sequenceName) throws IOException {		
-		List<TestarFile> files = new ArrayList<TestarFile>();
+		List<TestarFile> files = new ArrayList<>();
 		
 		log.info("Get files of {} sequence", sequenceName);		
 		TestarFile testarFile;
@@ -30,20 +30,26 @@ public class SequenceService implements ISequenceService {
 		File sequencelog = new File(TESTAR_PATH + "\\output\\logs\\" + sequenceName + ".log");
 		if(sequencelog.exists()) {
 			testarFile = new TestarFile();
-			testarFile.content(FileUtils.readFileToByteArray(sequencelog));
-			testarFile.setName(sequencelog.getName());
+			testarFile.content(FileUtils.readFileToString(sequencelog, "UTF-8"));
+			testarFile.setName(sequencelog.getCanonicalPath());
 			files.add(testarFile);
 		}
 		
-		File sequence = new File(TESTAR_PATH + "\\output\\sequences\\" + sequenceName);
-		if(sequence.exists()) {
+		File sequenceTestar = new File(TESTAR_PATH + "\\output\\sequences\\" + sequenceName + ".testar");
+		if(sequenceTestar.exists()) {
 			testarFile = new TestarFile();
-			testarFile.content(FileUtils.readFileToByteArray(sequence));
-			testarFile.setName(sequence.getName());
+			testarFile.content("Replayable File");
+			testarFile.setName(sequenceTestar.getCanonicalPath());
 			files.add(testarFile);
 		}
 		
-		//TODO: HTML FILE
+		File sequenceHtml = new File(TESTAR_PATH + "\\output\\htmls\\" + sequenceName + ".html");
+		if(sequenceHtml.exists()) {
+			testarFile = new TestarFile();
+			testarFile.content(FileUtils.readFileToString(sequenceHtml, "UTF-8"));
+			testarFile.setName(sequenceHtml.getCanonicalPath());
+			files.add(testarFile);
+		}
 		
 		
 		return files;

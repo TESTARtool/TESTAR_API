@@ -20,7 +20,7 @@ public class TestarFile   {
   private String name = null;
 
   @JsonProperty("content")
-  private byte[] content = null;
+  private String content = null;
 
   public TestarFile name(String name) {
     this.name = name;
@@ -42,7 +42,7 @@ public class TestarFile   {
     this.name = name;
   }
 
-  public TestarFile content(byte[] content) {
+  public TestarFile content(String content) {
     this.content = content;
     return this;
   }
@@ -54,11 +54,11 @@ public class TestarFile   {
   @ApiModelProperty(value = "")
 
 @Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-  public byte[] getContent() {
+  public String getContent() {
     return content;
   }
 
-  public void setContent(byte[] content) {
+  public void setContent(String content) {
     this.content = content;
   }
 
