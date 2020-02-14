@@ -82,9 +82,24 @@ public class TestarService implements ITestarService {
 		
 		commands.add("ShowVisualSettingsDialogOnStartup=false");
 		
-		/*if (params.getTestCaseName() != null) {
-			commands.add("TestCaseName="+params.getTestCaseName());
-		}*/
+		if (params.getApplicationName() != null) {
+			commands.add("ApplicationName="+params.getApplicationName());
+		}
+		
+		if (params.getApplicationVersion() != null) {
+			commands.add("ApplicationVersion="+params.getApplicationVersion());
+		}
+		
+		if (params.getLoginUsername() != null) {
+			commands.add("LoginUsername="+params.getLoginUsername());
+		}
+		
+		if (params.getLoginPassword() != null) {
+			commands.add("LoginPassword="+params.getLoginPassword());
+		}
+		
+		commands.add("TopWidgetsState="+params.getTopWidgetsState());
+
 
 		//TODO: sequenceFileName
 		

@@ -7,17 +7,17 @@ https://www.youtube.com/watch?v=qDTUYkaXAEc
 # Change default port value in application.properties
 
 Use:
-server.contextPath=/testar/1.0.0
+server.contextPath=/testar/1.2.0
 server.port=8080
 
-To: http://localhost:8080/testar/1.0.0/swagger-ui.html
+To: http://localhost:8080/testar/1.2.0/swagger-ui.html
 
 Use:
-server.contextPath=/testar/1.0.0
+server.contextPath=/testar/1.2.0
 server.address=10.101.101.6
 server.port=8090
 
-To: http://10.101.101.6:8090/testar/1.0.0/swagger-ui.html
+To: http://10.101.101.6:8090/testar/1.2.0/swagger-ui.html
 
 
 # Example TESTAR Web POST execution
@@ -26,15 +26,14 @@ Use:
 params 
 {
   "mode": "Generate",
-  "sse": "web_generic",  
+  "sse": "desktop_generic",  
   "sequenceLength": 50,
   "sequences": 5,
-  "suspiciousTitles": ".*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*|.*[bB]ortali.*",
-  "testCaseName": "xxxx"
+  "suspiciousTitles": ".*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*",
 }
 
 To:
-testar.bat sse=web_generic Mode=Generate Sequences=5 SequenceLength=50 SuspiciousTitles=.*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*|.*[bB]ortali.*
+testar.bat sse=desktop_generic Mode=Generate Sequences=5 SequenceLength=50 SuspiciousTitles=.*[eE]rror.*|.*[eE]xcep[ct]i[o?]n.*
 
 # Other useful information
 
