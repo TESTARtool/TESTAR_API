@@ -57,11 +57,16 @@ public class TestarService implements ITestarService {
 		if (StringUtils.isNotEmpty(params.getSutConnector())) {
 			commands.add("SUTConnector="+params.getSutConnector());
 		}
-		
+
 		if (StringUtils.isNotEmpty(params.getSutConnectorValue())) {
 			String path = params.getSutConnectorValue();
 			path = path.replace(File.separator, File.separator+File.separator);
-			commands.add("SUTConnectorValue=\""+path+"\"");
+			if(params.getWebURL() != null) {
+				commands.add("SUTConnectorValue=\" \"\""+path+"\"\" \"\""+params.getWebURL()+"\"\" \"");
+			}
+			else {
+				commands.add("SUTConnectorValue=\""+path+"\"");
+			}
 		}
 		
 		if (params.getSequences() != null) {
@@ -104,12 +109,14 @@ public class TestarService implements ITestarService {
 		//TODO: sequenceFileName
 		
 		String[] commadsArray = commands.toArray(new String[0]);
+		StringBuilder cmdToExecute = new StringBuilder();
 		
 		for (String string : commadsArray) {
 			log.info(string);
+			cmdToExecute.append(string + " ");
 		}		
 		
-		Process process = Runtime.getRuntime().exec(commadsArray);
+		Process process = Runtime.getRuntime().exec(cmdToExecute.toString());
 		
 		/*int exitValue = process.waitFor();
 		if (exitValue != 0) {

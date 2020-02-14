@@ -24,6 +24,9 @@ public class Params   {
 
 	@JsonProperty("sutConnectorValue")
 	private String sutConnectorValue = null;
+	
+	@JsonProperty("webURL")
+	private String webURL = null;
 
 	@JsonProperty("sequences")
 	private Integer sequences = null;
@@ -134,6 +137,25 @@ public class Params   {
 		this.sutConnectorValue = sutConnectorValue;
 		return this;
 	}
+	
+	/**
+	 * Indicate the URL of a web page to test
+	 * @return webURL
+	 */
+	@ApiModelProperty(example = "https://www.google.es/", value = "Indicate the URL of a web page to test")
+
+	public String getWebURL() {
+		return webURL;
+	}
+
+	public void setWebURL(String webURL) {
+		this.webURL = webURL;
+	}
+
+	public Params webURL(String webURL) {
+		this.webURL = webURL;
+		return this;
+	}
 
 	/**
 	 * Number of sequences to generate
@@ -235,7 +257,6 @@ public class Params   {
 	 * @return applicationName
 	 **/
 	@ApiModelProperty(example = "Notepad", value = "Name of the application run that we are executing")
-	@NotNull
 
 	public String getApplicationName() {
 		return applicationName;
@@ -255,7 +276,6 @@ public class Params   {
 	 * @return applicationVersion
 	 **/
 	@ApiModelProperty(example = "1.0.0", value = "Number of the version run that we are executing")
-	@NotNull
 
 	public String getApplicationVersion() {
 		return applicationVersion;
@@ -275,7 +295,6 @@ public class Params   {
 	 * @return loginUsername
 	 **/
 	@ApiModelProperty(example = "username", value = "Username credential to use in the beginSequence method of the protocol")
-	@NotNull
 
 	public String getLoginUsername() {
 		return loginUsername;
@@ -295,7 +314,6 @@ public class Params   {
 	 * @return loginPassword
 	 **/
 	@ApiModelProperty(example = "password", value = "Password credential to use in the beginSequence method of the protocol")
-	@NotNull
 
 	public String getLoginPassword() {
 		return loginPassword;
@@ -315,7 +333,6 @@ public class Params   {
 	 * @return topWidgetsState
 	 **/
 	@ApiModelProperty(example = "true", value = "Derive TESTAR Actions with the Top Widgets Of the State")
-	@NotNull
 
 	public boolean getTopWidgetsState() {
 		return topWidgetsState;
@@ -343,6 +360,7 @@ public class Params   {
 				Objects.equals(this.mode, params.mode) &&
 				Objects.equals(this.sutConnector, params.sutConnector) &&
 				Objects.equals(this.sutConnectorValue, params.sutConnectorValue) &&
+				Objects.equals(this.webURL, params.webURL) &&
 				Objects.equals(this.sequences, params.sequences) &&
 				Objects.equals(this.sequenceLength, params.sequenceLength) &&
 				Objects.equals(this.suspiciousTitles, params.suspiciousTitles) &&
@@ -362,6 +380,7 @@ public class Params   {
 				mode,
 				sutConnector,
 				sutConnectorValue,
+				webURL,
 				sequences,
 				sequenceLength,
 				suspiciousTitles,
@@ -383,6 +402,7 @@ public class Params   {
 		sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
 		sb.append("    sutConnector: ").append(toIndentedString(sutConnector)).append("\n");
 		sb.append("    sutConnectorValue: ").append(toIndentedString(sutConnectorValue)).append("\n");
+		sb.append("    webURL: ").append(toIndentedString(webURL)).append("\n");
 		sb.append("    sequences: ").append(toIndentedString(sequences)).append("\n");
 		sb.append("    sequenceLength: ").append(toIndentedString(sequenceLength)).append("\n");
 		sb.append("    suspiciousTitles: ").append(toIndentedString(suspiciousTitles)).append("\n");
